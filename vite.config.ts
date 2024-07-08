@@ -43,7 +43,7 @@ export default defineConfig({
             purpose: 'maskable'
           }
         ],
-        start_url: 'index.html#/',
+        start_url: '.',
         display: 'standalone',
         scope: '/',
         theme_color: '#000000',

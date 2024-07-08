@@ -31,7 +31,7 @@ const handleNotification = () => {
   <div class="apps-container">
     <h1>安装落地页</h1>
 
-    <div @click="handleNotification">模拟推送通知</div>
+    <div @click="handleNotification" class="test-btn">模拟推送通知</div>
   </div>
 </template>
 
@@ -39,6 +39,18 @@ const handleNotification = () => {
 .apps-container {
   h1 {
     font-size: 26px;
+  }
+
+  .test-btn {
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
   }
 }
 </style>
