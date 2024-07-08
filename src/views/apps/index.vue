@@ -58,6 +58,10 @@
       </div>
       <div v-else class="open-section" id="openApp" @click="handleOpenAppClick">打开</div>
     </div>
+
+    <div class="image-section">
+      <img src="@/assets/image/202407041445910.png" alt="" srcset="" />
+    </div>
   </div>
 </template>
 
@@ -260,6 +264,14 @@ const handleOpenAppClick = () => {
     font-size: 28px;
     margin-top: 24px;
     cursor: 'pointer';
+  }
+
+  .image-section {
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

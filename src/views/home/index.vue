@@ -6,8 +6,6 @@
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
 
 const handleNotification = () => {
   console.log('🍍🙏🍍👉: 模拟推送通知事件触发')
@@ -40,9 +38,9 @@ const handleNotification = () => {
   })
 }
 
-onBeforeMount(() => {
-  window.location.replace('https://www.tiktok.com/')
-})
+// onBeforeMount(() => {
+//   window.location.replace('https://www.tiktok.com/')
+// })
 </script>
 
 <style scoped>

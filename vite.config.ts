@@ -59,7 +59,20 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         clientsClaim: true,
-        skipWaiting: true
+        skipWaiting: true,
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+              }
+            }
+          }
+        ]
       },
       devOptions: {
         enabled: true
