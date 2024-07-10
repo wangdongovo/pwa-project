@@ -20,7 +20,8 @@
             <img src="@/assets/image/apps/title-tag.png" alt="" srcset="" />
           </div>
 
-          <p>Ghana Good Betting and Gaming Company</p>
+          <p v-if="progressStatus" class="progress-tip">{{ progressNum }}%</p>
+          <p v-else>Ghana Good Betting and Gaming Company</p>
 
           <div class="verified">
             <img src="@/assets/image/apps/verified.png" alt="" srcset="" />
@@ -228,7 +229,6 @@
           <div class="type-item type-activated">Telephone</div>
           <div class="type-item">Tablet</div>
         </div>
-        s
 
         <div class="scoring">
           <div class="number">
@@ -365,6 +365,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
+const progressStatus = ref(false)
+const progressNum = ref(0)
+
 const countdown = ref(10)
 
 const currentStatus = ref(0)
@@ -390,10 +393,8 @@ const getInstalledApps = async () => {
 
       console.log('本地安装的PWA', installedApps)
 
-      installedApps.length > 0 ?  currentStatus.value = 1 : currentStatus.value = 0
-        
-        
-      
+      installedApps.length > 0 ? (currentStatus.value = 1) : (currentStatus.value = 0)
+
       updateButtonVisibility(installedApps.length)
     } catch (error) {
       console.error('获取已安装应用时出错:', error)
@@ -422,7 +423,23 @@ const handleAppInstalled = () => {
 }
 
 
+
 const startCountdown = () => {
+
+
+  let value = 0
+  const intervalId = setInterval(() => {
+    value++
+    
+    progressNum.value = value
+    if (value >= 100) {
+      clearInterval(intervalId)
+      
+    }
+  }, 100)
+
+
+
   timerId = setInterval(() => {
     countdown.value--
     if (countdown.value === 0) {
@@ -431,9 +448,6 @@ const startCountdown = () => {
     }
   }, 1000)
 }
-
-
-
 
 const handleInstallClick = async () => {
   if (deferredPrompt.value) {
@@ -444,6 +458,8 @@ const handleInstallClick = async () => {
         console.log('用户接受了安装')
 
         startCountdown()
+        
+        progressStatus.value = true
         localStorage.setItem('isInstalled', 'true')
         localStorage.removeItem('installPrompt')
         updateButtonVisibility(1)
@@ -476,14 +492,10 @@ onMounted(() => {
   getInstalledApps()
 })
 
-
-
 onUnmounted(() => {
   window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
   window.removeEventListener('appinstalled', handleAppInstalled)
 })
-
-
 </script>
 
 <style scoped lang="less">
@@ -508,9 +520,8 @@ onUnmounted(() => {
 
   .main-section {
     overflow: hidden;
-    padding: 54px 22px 108px  44px;
+    padding: 54px 22px 108px 44px;
     width: 100%;
-   
 
     .app-wrapper {
       display: flex;
@@ -550,6 +561,14 @@ onUnmounted(() => {
           font-weight: 600;
           line-height: 23px;
           margin-bottom: 5px;
+        }
+
+        .progress-tip {
+          color: #333;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 16px;
+          margin-bottom: 3px;
         }
 
         .verified {
@@ -629,6 +648,9 @@ onUnmounted(() => {
         top: 0;
         width: 1px;
         left: 0;
+      }
+      .info-item:first-child::before {
+        display: none;
       }
     }
 
