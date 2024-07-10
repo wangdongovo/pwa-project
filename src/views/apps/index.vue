@@ -380,7 +380,6 @@ const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null)
 const installedAppsCount = ref<number>(0)
 
 const updateButtonVisibility = (count: number) => {
-  count > 0 ? (currentStatus.value = 1) : (currentStatus.value = 0)
   installedAppsCount.value = count
 }
 
@@ -417,11 +416,6 @@ const handleAppInstalled = () => {
   updateButtonVisibility(1)
 }
 
-onMounted(() => {
-  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  window.addEventListener('appinstalled', handleAppInstalled)
-  getInstalledApps()
-})
 
 const startCountdown = () => {
   timerId = setInterval(() => {
@@ -433,10 +427,8 @@ const startCountdown = () => {
   }, 1000)
 }
 
-onUnmounted(() => {
-  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  window.removeEventListener('appinstalled', handleAppInstalled)
-})
+
+
 
 const handleInstallClick = async () => {
   if (deferredPrompt.value) {
@@ -472,6 +464,21 @@ const handleOpenAppClick = () => {
     window.open(`${window.location.origin}/`, '_blank')
   }
 }
+
+onMounted(() => {
+  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  window.addEventListener('appinstalled', handleAppInstalled)
+  getInstalledApps()
+})
+
+
+
+onUnmounted(() => {
+  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  window.removeEventListener('appinstalled', handleAppInstalled)
+})
+
+
 </script>
 
 <style scoped lang="less">
