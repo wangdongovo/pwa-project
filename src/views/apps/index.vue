@@ -604,7 +604,7 @@ onUnmounted(() => {
         flex-direction: column;
         justify-content: center;
         min-width: 100px;
-        padding: 0 10px;
+        padding: 0 7px;
         position: relative;
         .value {
           align-items: center;
