@@ -389,6 +389,11 @@ const getInstalledApps = async () => {
       const installedApps = await (navigator as any).getInstalledRelatedApps()
 
       console.log('本地安装的PWA', installedApps)
+
+      installedApps.length > 0 ?  currentStatus.value = 1 : currentStatus.value = 0
+        
+        
+      
       updateButtonVisibility(installedApps.length)
     } catch (error) {
       console.error('获取已安装应用时出错:', error)
