@@ -530,7 +530,9 @@ const handleVisibilityChange = () => {
   if (document.hidden) {
     console.log('用户切换到了其他标签页或者最小化了窗口')
 
-    overlayStatus.value = true
+
+    currentStatus.value === 1 ? null : overlayStatus.value = true
+    
   } else {
     console.log('用户回到了当前标签页')
   }
