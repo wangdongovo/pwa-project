@@ -11,7 +11,7 @@
           class="app-icon"
           data-value="app_icon"
           loading="lazy"
-          src="https://static.roibest.com/oss_upload/202406/24/9ced830058c2c46ba5590604f7aec9c46678f16e4e6f0.png"
+          src="@/assets/image/apps/tictok-logo.png"
         />
 
         <div class="app-info">
@@ -371,7 +371,7 @@
       <div class="app-wrapper">
         <img
           class="app-icon"
-          src="https://static.roibest.com/oss_upload/202406/24/9ced830058c2c46ba5590604f7aec9c46678f16e4e6f0.png"
+          src="@/assets/image/apps/tictok-logo.png"
           alt=""
           srcset=""
         />
