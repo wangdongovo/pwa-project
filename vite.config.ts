@@ -51,7 +51,7 @@ export default defineConfig({
         related_applications: [
           {
             platform: 'webapp',
-            url: 'http://localhost:5173/manifest.webmanifest'
+            url: 'https://pwa-project-sandy.vercel.app/manifest.webmanifest'
           }
         ],
         prefer_related_applications: true
