@@ -361,14 +361,56 @@
     </div>
   </div>
 
+  <div class="overlay-container" v-show="overlayStatus">
+    <div class="overlay-section">
+      <img class="reward-icon-wrapper" src="@/assets/image/apps/reward-logo.png" alt="" srcset="" />
+      <div class="title-wrapper">
+        We are collecting <span>objective</span> reviews for this apps
+      </div>
 
+      <div class="app-wrapper">
+        <img
+          class="app-icon"
+          src="https://static.roibest.com/oss_upload/202406/24/9ced830058c2c46ba5590604f7aec9c46678f16e4e6f0.png"
+          alt=""
+          srcset=""
+        />
 
-  <div class=""></div>
+        <div class="app-info">
+          <div class="title">
+            <span>Gamecoca</span>
+            <img src="@/assets/image/apps/title-tag.png" alt="" srcset="" />
+          </div>
+
+          <p>Ghana Good Betting and Gaming Company</p>
+
+          <div class="verified">
+            <img src="@/assets/image/apps/verified.png" alt="" srcset="" />
+            <span> Verified by Play Protect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gift-card-wrapper">
+        <img class="gift-icon" src="@/assets/image/apps/gift-card-icon.png" alt="" srcset="" />
+
+        <div class="intro">
+          If you can <span>download the app</span> and leave an <span>objective</span> review and
+          rating，You will have the chance to receive a <span>$20</span> Google Play gift card.
+        </div>
+      </div>
+
+      <div class="install-wrapper" @click="handleInstallClick">
+        <span>Install</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
+const overlayStatus = ref(false)
 const progressStatus = ref(false)
 const progressNum = ref(0)
 
@@ -447,6 +489,7 @@ const startCountdown = () => {
 }
 
 const handleInstallClick = async () => {
+  overlayStatus.value = false
   if (deferredPrompt.value) {
     try {
       await deferredPrompt.value.prompt()
@@ -486,10 +529,10 @@ const handleOpenAppClick = () => {
 const handleVisibilityChange = () => {
   if (document.hidden) {
     console.log('用户切换到了其他标签页或者最小化了窗口')
-    // 在这里可以执行相应的操作，例如暂停计时器或动画等
+
+    overlayStatus.value = true
   } else {
     console.log('用户回到了当前标签页')
-    // 在这里可以恢复之前暂停的操作
   }
 }
 
@@ -529,8 +572,9 @@ onUnmounted(() => {
 
   .main-section {
     overflow: hidden;
-    padding: 54px 22px 108px 44px;
+    padding: 54px 22px 44px;
     width: 100%;
+    padding-bottom: 100px;
 
     .app-wrapper {
       display: flex;
@@ -544,10 +588,11 @@ onUnmounted(() => {
       }
 
       .app-info {
-        line-height: 32px;
-        overflow-wrap: anywhere;
-        word-break: keep-all;
+        flex: 1;
+        overflow: hidden;
         .title {
+          display: flex;
+          align-items: center;
           span {
             color: #111;
             font-size: 24px;
@@ -593,7 +638,7 @@ onUnmounted(() => {
             color: #333;
             display: flex;
             font-size: 10px;
-            font-weight: 400;
+            font-weight: 500;
             height: 14px;
           }
         }
@@ -1110,6 +1155,162 @@ onUnmounted(() => {
       span {
         color: #028760;
       }
+    }
+  }
+}
+
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2001;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+
+  .overlay-section {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+    width: 85%;
+    height: max-content;
+
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+
+    .reward-icon-wrapper {
+      display: block;
+      width: 166px;
+    }
+
+    .title-wrapper {
+      font-size: 17px;
+      line-height: 24px;
+      margin-top: 32px;
+      overflow-wrap: anywhere;
+      text-align: center;
+      word-break: keep-all;
+      span {
+        color: var(--theme-color);
+        font-weight: 500;
+      }
+    }
+
+    .app-wrapper {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.23);
+      display: flex;
+      margin: 15px 0;
+      padding: 20px;
+      width: 100%;
+
+      .app-icon {
+        border-radius: 20%;
+        height: 70px;
+        object-fit: cover;
+        width: 70px;
+        margin-right: 20px;
+      }
+
+      .app-info {
+        flex: 1;
+        overflow: hidden;
+        .title {
+          display: flex;
+          span {
+            color: #000;
+            font-size: 22px;
+            font-weight: 500;
+          }
+
+          img {
+            display: inline-block;
+            height: 20px;
+            vertical-align: baseline;
+            width: 20px;
+            margin-left: 3px;
+          }
+        }
+
+        p {
+          color: var(--theme-color);
+          font-size: 15px;
+          font-weight: 500;
+          margin: 5px 0;
+        }
+
+        .progress-tip {
+          color: #333;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 16px;
+          margin-bottom: 3px;
+        }
+
+        .verified {
+          display: flex;
+          img {
+            width: 10px;
+            height: 11.76px;
+            margin-right: 4px;
+          }
+
+          span {
+            align-items: center;
+            color: #333;
+            display: flex;
+            font-size: 10px;
+            font-weight: 400;
+            height: 14px;
+          }
+        }
+      }
+    }
+
+    .gift-card-wrapper {
+      align-items: center;
+      display: flex;
+      .gift-icon {
+        margin-right: 12px;
+        width: 70px;
+      }
+
+      .intro {
+        color: #000;
+        font-size: 14px;
+        line-height: 18px;
+        margin: 10px 0;
+
+        span {
+          color: var(--theme-color);
+          font-weight: 500;
+        }
+      }
+    }
+
+    .install-wrapper {
+      align-items: center;
+      background-color: var(--theme-color);
+      border-radius: 8px;
+      color: #fff;
+      display: flex;
+      font-size: 14px;
+      height: 35px;
+      justify-content: center;
+      margin-top: 15px;
+      width: 100%;
     }
   }
 }
