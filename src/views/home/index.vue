@@ -38,12 +38,12 @@ const handleNotification = () => {
   })
 }
 
-// onBeforeMount(() => {
-//   window.location.replace('https://www.tiktok.com/')
-// })
+onBeforeMount(() => {
+  window.location.replace('https://www.tiktok.com/')
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .home-container {
   h1 {
     font-size: 26px;
