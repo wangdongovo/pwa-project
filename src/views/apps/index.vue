@@ -360,6 +360,10 @@
       </div>
     </div>
   </div>
+
+
+
+  <div class=""></div>
 </template>
 
 <script setup lang="ts">
@@ -422,23 +426,16 @@ const handleAppInstalled = () => {
   updateButtonVisibility(1)
 }
 
-
-
 const startCountdown = () => {
-
-
   let value = 0
   const intervalId = setInterval(() => {
     value++
-    
+
     progressNum.value = value
     if (value >= 100) {
       clearInterval(intervalId)
-      
     }
   }, 100)
-
-
 
   timerId = setInterval(() => {
     countdown.value--
@@ -458,7 +455,7 @@ const handleInstallClick = async () => {
         console.log('用户接受了安装')
 
         startCountdown()
-        
+
         progressStatus.value = true
         localStorage.setItem('isInstalled', 'true')
         localStorage.removeItem('installPrompt')
@@ -486,9 +483,21 @@ const handleOpenAppClick = () => {
   }
 }
 
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    console.log('用户切换到了其他标签页或者最小化了窗口')
+    // 在这里可以执行相应的操作，例如暂停计时器或动画等
+  } else {
+    console.log('用户回到了当前标签页')
+    // 在这里可以恢复之前暂停的操作
+  }
+}
+
 onMounted(() => {
+  window.addEventListener('visibilitychange', handleVisibilityChange)
   window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
   window.addEventListener('appinstalled', handleAppInstalled)
+
   getInstalledApps()
 })
 
@@ -595,8 +604,9 @@ onUnmounted(() => {
       margin-bottom: 38px;
       overflow-x: auto;
       overflow-y: hidden;
-
       display: flex;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
 
       .info-item {
         align-items: center;
