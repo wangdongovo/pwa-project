@@ -30,7 +30,7 @@ export async function subscribeUser(): Promise<void> {
     })
 
     // 将订阅信息发送到后端保存
-    await fetch('http://localhost:3000/subscribe', {
+    await fetch('https://09e6-107-155-24-205.ngrok-free.app/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),
       headers: {

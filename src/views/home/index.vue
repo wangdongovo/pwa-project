@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <div @click="handleSubscribe" class="test-btn">订阅推送通知</div>
-    <div @click="handleNotification" class="test-btn">模拟推送通知</div>
+    <!-- <div @click="handleNotification" class="test-btn">模拟推送通知</div> -->
   </div>
 </template>
 
