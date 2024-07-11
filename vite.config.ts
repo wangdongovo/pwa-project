@@ -59,31 +59,31 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         clientsClaim: true,
-        skipWaiting: true,
-        runtimeCaching: [
-          {
-            urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'images-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
-              }
-            }
-          },
-          {
-            urlPattern: /\.(?:js|css)$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'static-resources',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
-              }
-            }
-          }
-        ]
+        skipWaiting: true
+        // runtimeCaching: [
+        //   {
+        //     urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+        //     handler: 'CacheFirst',
+        //     options: {
+        //       cacheName: 'images-cache',
+        //       expiration: {
+        //         maxEntries: 50,
+        //         maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
+        //       }
+        //     }
+        //   },
+        //   {
+        //     urlPattern: /\.(?:js|css)$/,
+        //     handler: 'StaleWhileRevalidate',
+        //     options: {
+        //       cacheName: 'static-resources',
+        //       expiration: {
+        //         maxEntries: 100,
+        //         maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
+        //       }
+        //     }
+        //   }
+        // ]
       },
       devOptions: {
         enabled: true,
