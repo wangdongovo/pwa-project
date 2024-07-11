@@ -18,7 +18,7 @@ const handleNotification = () => {
     if (permission === 'granted') {
       const data = {
         title: '电商活动通知',
-        body: '快来参加我们的夏季特卖活动！',
+        body: `快来参加我们的夏季特卖活动！${new Date().getTime()}`,
         icon: 'https://cdn.jsdelivr.net/gh/wangdongovo/images@main/blog/202407041445910.png',
         badge: 'https://cdn.jsdelivr.net/gh/wangdongovo/images@main/blog/202407041445910.png',
         url: 'https://www.baidu.com/'
@@ -38,9 +38,9 @@ const handleNotification = () => {
   })
 }
 
-onBeforeMount(() => {
-  window.location.replace('https://www.tiktok.com/')
-})
+// onBeforeMount(() => {
+//   window.location.replace('https://www.tiktok.com/')
+// })
 </script>
 
 <style lang="less" scoped>
