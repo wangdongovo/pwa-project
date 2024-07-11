@@ -11,16 +11,6 @@
  * limitations under the License.
  */
 
-self.addEventListener('push', (event) => {
-  const data = event.data.json()
-  console.log('🍍🙏🍍👉: 服务端推送的信息', data)
-  event.waitUntil(
-    self.registration.showNotification(data.title, {
-      body: data.body
-    })
-  )
-})
-
 // If the loader is already loaded, just stop.
 if (!self.define) {
   let registry = {}

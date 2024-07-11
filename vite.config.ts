@@ -86,14 +86,15 @@ export default defineConfig({
         ]
       },
       devOptions: {
-        enabled: true
+        enabled: true,
+        type: 'classic'
       }
     })
   ],
   css: {
     postcss: {
       plugins: [
-        autoprefixer(),
+        autoprefixer()
         // pxtoviewport({
         //   viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，可以设置为375或者750，默认是750
         //   viewportHeight: 1334, // 视窗的高度，可以根据设计稿的高度自行设置
