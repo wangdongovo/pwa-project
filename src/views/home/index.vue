@@ -1,11 +1,14 @@
 <template>
   <div class="home-container">
+    <div @click="handleSubscribe" class="test-btn">订阅推送通知</div>
     <div @click="handleNotification" class="test-btn">模拟推送通知</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
+
+import { subscribeUser } from '@/utils/notifications'
 
 const handleNotification = () => {
   console.log('🍍🙏🍍👉: 模拟推送通知事件触发')
@@ -36,6 +39,14 @@ const handleNotification = () => {
       })
     }
   })
+}
+
+const handleSubscribe = async () => {
+  try {
+    await subscribeUser()
+  } catch (error) {
+    console.error('订阅失败:', error)
+  }
 }
 
 // onBeforeMount(() => {
