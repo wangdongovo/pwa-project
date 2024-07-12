@@ -45,6 +45,22 @@ if ('serviceWorker' in navigator) {
 //     })
 // }
 
+
+// 设置和清除小红点的逻辑
+if ('setAppBadge' in navigator) {
+  // 设置小红点
+  navigator.setAppBadge(1).catch((error) => {
+    console.error('设置小红点失败:', error);
+  });
+}
+
+if ('clearAppBadge' in navigator) {
+  // 清除小红点
+  navigator.clearAppBadge().catch((error) => {
+    console.error('清除小红点失败:', error);
+  });
+}
+
 const app = createApp(App)
 
 app.use(createPinia())
