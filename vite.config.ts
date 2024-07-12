@@ -51,7 +51,7 @@ export default defineConfig({
         related_applications: [
           {
             platform: 'webapp',
-            url: 'https://pwa-project-sandy.vercel.app/manifest.webmanifest'
+            url: 'http://localhost:5173/manifest.webmanifest'
           }
         ],
         prefer_related_applications: true
@@ -59,7 +59,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         clientsClaim: true,
-        skipWaiting: true
+        skipWaiting: true,
         // runtimeCaching: [
         //   {
         //     urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
