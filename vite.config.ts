@@ -56,39 +56,15 @@ export default defineConfig({
         ],
         prefer_related_applications: true
       },
-      registerType: 'autoUpdate',
-      workbox: {
-        clientsClaim: true,
-        skipWaiting: true,
-        // runtimeCaching: [
-        //   {
-        //     urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-        //     handler: 'CacheFirst',
-        //     options: {
-        //       cacheName: 'images-cache',
-        //       expiration: {
-        //         maxEntries: 50,
-        //         maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
-        //       }
-        //     }
-        //   },
-        //   {
-        //     urlPattern: /\.(?:js|css)$/,
-        //     handler: 'StaleWhileRevalidate',
-        //     options: {
-        //       cacheName: 'static-resources',
-        //       expiration: {
-        //         maxEntries: 100,
-        //         maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
-        //       }
-        //     }
-        //   }
-        // ]
-      },
-      devOptions: {
-        enabled: true,
-        type: 'classic'
+      injectRegister: false, // 禁用自动注册
+      strategies: 'injectManifest', // 使用 injectManifest 策略
+      srcDir: 'src', // 指定 src 目录
+      filename: 'empty-sw.js', // 提供一个空的 service worker 文件
+      injectManifest: {
+        injectionPoint: undefined
       }
+
+      
     })
   ],
   css: {
