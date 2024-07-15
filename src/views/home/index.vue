@@ -3,13 +3,13 @@
     <div @click="handleSubscribe" class="subscribe-section">订阅推送通知</div>
     <!-- <div @click="handleNotification" class="test-btn">模拟推送通知</div> -->
     <div class="video-section">
-      <video src="@/assets/video/1721024379876.mp4" controls loop autoplay></video>
+      <video src="https://file.supamob.com.cn/1513c548/pwa/1721024379876.mp4" controls loop autoplay></video>
     </div>
 
     <div class="audio">
       
       <!-- 音频 -->
-      <audio src="src/assets/video/1721025382670.mp3" controls ></audio>
+      <audio src="https://file.supamob.com.cn/1513c548/pwa/1721025382670.mp3" controls ></audio>
     </div>
     
   </div>
