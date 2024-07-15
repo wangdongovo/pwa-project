@@ -30,7 +30,7 @@ export async function subscribeUser(): Promise<void> {
     })
 
     // 将订阅信息发送到后端保存
-    await fetch('https://647a-107-155-24-205.ngrok-free.app/subscribe', {
+    await fetch('https://2e8f-107-155-24-205.ngrok-free.app/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),
       headers: {
