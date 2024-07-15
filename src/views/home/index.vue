@@ -1,12 +1,22 @@
 <template>
   <div class="home-container">
-    <div @click="handleSubscribe" class="test-btn">订阅推送通知</div>
+    <div @click="handleSubscribe" class="subscribe-section">订阅推送通知</div>
     <!-- <div @click="handleNotification" class="test-btn">模拟推送通知</div> -->
+    <div class="video-section">
+      <video src="@/assets/video/1721024379876.mp4" controls loop autoplay></video>
+    </div>
+
+    <div class="audio">
+      
+      <!-- 音频 -->
+      <audio src="src/assets/video/1721025382670.mp3" controls ></audio>
+    </div>
+    
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, onMounted } from 'vue'
 
 import { subscribeUser } from '@/utils/notifications'
 
@@ -52,6 +62,17 @@ const handleSubscribe = async () => {
 // onBeforeMount(() => {
 //   window.location.replace('https://www.tiktok.com/')
 // })
+
+
+onMounted(() => {
+  window.addEventListener('load', function() {
+  var video: any = document.querySelector('video');
+  video.addEventListener('loadeddata', function() {
+    video.play();
+    video.loop = true;
+  });
+});
+})
 </script>
 
 <style lang="less" scoped>
@@ -60,7 +81,7 @@ const handleSubscribe = async () => {
     font-size: 26px;
   }
 
-  .test-btn {
+  .subscribe-section {
     width: 400px;
     height: 40px;
     line-height: 40px;
@@ -70,6 +91,17 @@ const handleSubscribe = async () => {
     border-radius: 4px;
     margin-top: 20px;
     cursor: pointer;
+  }
+
+
+  .video-section {
+    width: 750px;
+    height: 500px;
+
+    video {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
